@@ -57,6 +57,7 @@
       }
 
       .chat-container {
+        cursor:pointer;
         display: flex;
         flex-direction: column;
         gap: 30px;
@@ -177,7 +178,7 @@
       <button class="name-button" title="Play uplifting song" onclick="playSong()">Play 🎵</button>
     </div>
     <audio id="audio" autoplay loop></audio>
-    <div class="chat-container">
+    <div class="chat-container" id="chatBubble">
       <div class="bubble left" id="surpriseBox">
         <div>Selamat pagi kak.. namanya siapaaa? 🐱</div>
         <div class="btn-container">
@@ -221,6 +222,11 @@
         document.getElementById("songTitle").innerText(randomSong.title);
         document.getElementById("nowPlaying").style.display = "block";
       }
+      document.getElementById("chatBubble").addEventListener("click", () => {
+        if(name!=""){
+          chooseName(name);
+        }
+      });
       function chooseName(nameGiven) {
         name = nameGiven;
         isMessageDelivered = true;
