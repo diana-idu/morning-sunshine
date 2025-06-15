@@ -201,7 +201,7 @@
       var name = "";
       var currSong = "";
       var isMessageDelivered = false;
-      const surprises = [
+      var surprises = [
         `Semangat buat hari ini! ${name} hebat, ${name} cantik, ${name} terbaik dannn ${name} luar biasa! 💖`,
         `Semoga semua berjalan lancar yaa untuk ${name}.. ku yakin kakak bisa berprogress banyak hari ini ^^`,
         `Jangan lupaaa makan teratur yaa ${name}, minum yang cukup dannn juga I'm sure u will do the best today :3`,
@@ -224,6 +224,13 @@
       function chooseName(nameGiven) {
         name = nameGiven;
         isMessageDelivered = true;
+        surprises = [
+          `Semangat buat hari ini! ${name} hebat, ${name} cantik, ${name} terbaik dannn ${name} luar biasa! 💖`,
+          `Semoga semua berjalan lancar yaa untuk ${name}.. ku yakin kakak bisa berprogress banyak hari ini ^^`,
+          `Jangan lupaaa makan teratur yaa ${name}, minum yang cukup dannn juga I'm sure u will do the best today :3`,
+          `Jika ${name} ngerasa sedih hari ini.. just remember that many people love you and this world is not complete without you <3`,
+          `Terima kasih yaaa ${name} sudah hadir di dunia ini dan melengkapi hidupkuuu, please live happily for a long long time.. ^^`,
+        ];
         const box = document.getElementById("surpriseBox");
         const randomIndex = Math.floor(Math.random() * surprises.length);
         box.innerHTML = surprises[randomIndex];
