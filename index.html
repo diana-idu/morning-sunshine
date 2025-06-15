@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Good Morning, Adek-adek sayang ❤️</title>
+    <style>
+      body {
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        background: linear-gradient(to top, #fff5f5, #ffe0e0);
+        color: #333;
+        text-align: center;
+        padding: 50px;
+      }
+      h1 {
+        font-size: 2.5em;
+        margin-bottom: 0.2em;
+      }
+      .cat {
+        width: 250px;
+        height: 250px;
+        margin: 20px auto;
+        animation: float 3s infinite ease-in-out;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+      .message-box {
+        background: #fff;
+        padding: 20px;
+        border-radius: 20px;
+        max-width: 500px;
+        margin: 20px auto;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      button {
+        background-color: #ff8fa3;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #ff6c85;
+      }
+
+      .chat-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        max-width: 500px;
+        margin: auto;
+      }
+
+      .bubble {
+        position: relative;
+        max-width: 70%;
+        padding: 15px 20px;
+        border-radius: 25px;
+        font-size: 16px;
+        margin-bottom: 30px;
+        background-color: #ffffff;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .bubble.left {
+        text-align: left;
+        align-self: flex-start;
+        border-bottom-left-radius: 5px;
+      }
+
+      /* cartoon-style tail: tiny circles */
+      .bubble.left::after {
+        content: "";
+        position: absolute;
+        bottom: -18px;
+        width: 10px;
+        height: 10px;
+        background: inherit;
+        border-radius: 50%;
+        box-shadow: 12px 12px 0 0 inherit, 24px 24px 0 0 inherit;
+      }
+
+      .bubble.left::after {
+        left: 15px;
+      }
+
+      .name-button {
+        display: inline-block;
+        padding: 5px 9px;
+        font-size: 12px;
+        color: #444;
+        background-color: #fff;
+        border: 2px solid #f9a8d4;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .name-button:hover {
+        background-color: #ffe4ee;
+        color: #c71585;
+      }
+
+      .btn-container {
+        margin-top: 10px;
+        display: flex;
+        justify-content: start;
+        gap: 16px;
+      }
+
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #fffafc;
+        cursor: pointer;
+      }
+
+      .heart {
+        position: absolute;
+        font-size: 24px;
+        animation: floatUp 4s ease-in forwards;
+        opacity: 0.9;
+        pointer-events: none;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-200px) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      #music-button {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+      }
+
+      #music-button:hover {
+        background-color: #ec4899;
+      }
+
+      audio {
+        display: none;
+      }
+
+      #nowPlaying {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="music-button">
+      <button class="name-button" title="Play uplifting song" onclick="playSong()">Play 🎵</button>
+    </div>
+    <audio id="audio" autoplay loop></audio>
+    <div class="chat-container">
+      <div class="bubble left" id="surpriseBox">
+        <div>Selamat pagi kak.. namanya siapaaa? 🐱</div>
+        <div class="btn-container">
+          <div class="name-button" onclick="chooseName('Kakak Amaaaa')">
+            🦖 Kakak Ama
+          </div>
+          <div class="name-button" onclick="chooseName('Dedek Berry')">
+            😻 Dedek Berry
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="cat" src="assets/cute_cat.png" />
+    <p></p>
+
+    <button onclick="showSurprise()">
+      Klik ini meng akan kasih kamu banyak cintaa ❤️ 💖 💗
+    </button>
+
+    <script>
+      var name = "";
+      var currSong = "";
+      var isMessageDelivered = false;
+      const surprises = [
+        `Semangat buat hari ini! ${name} hebat, ${name} cantik, ${name} terbaik dannn ${name} luar biasa! 💖`,
+        `Semoga semua berjalan lancar yaa untuk ${name}.. ku yakin kakak bisa berprogress banyak hari ini ^^`,
+        `Jangan lupaaa makan teratur yaa ${name}, minum yang cukup dannn juga I'm sure u will do the best today :3`,
+        `Jika ${name} ngerasa sedih hari ini.. just remember that many people love you and this world is not complete without you <3`,
+        `Terima kasih yaaa ${name} sudah hadir di dunia ini dan melengkapi hidupkuuu, please live happily for a long long time.. ^^`,
+      ];
+      const songs = [
+        { title: "Hearts2Hearts - The Chase", url: "thechase.mp3" },
+        { title: "Hearts2Hearts - Butterflies", url: "butterflies.mp3" },
+        { title: "Dream High", url: "dreamhigh.mp3" },
+        { title: "Someday - IU", url: "someday.mp3" },
+      ];
+      function playSong() {
+        const randomSong = songs[Math.floor(Math.random() * songs.length)];
+        audio.src = `assets/${randomSong.url}`;
+        audio.play();
+        document.getElementById("songTitle").innerText(randomSong.title);
+        document.getElementById("nowPlaying").style.display = "block";
+      }
+      function chooseName(nameGiven) {
+        name = nameGiven;
+        isMessageDelivered = true;
+        const box = document.getElementById("surpriseBox");
+        const randomIndex = Math.floor(Math.random() * surprises.length);
+        box.innerHTML = surprises[randomIndex];
+        box.style.display = "block";
+      }
+      function showSurprise() {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        const emojis = ["💖", "💕", "💗", "💘", "💝", "💞", "💓"];
+
+        for (let i = 0; i < 100; i++) {
+          const heart = document.createElement("div");
+          heart.classList.add("heart");
+          heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+          // random position across screen
+          heart.style.left = Math.random() * screenWidth + "px";
+          heart.style.top = Math.random() * screenHeight + "px";
+
+          // random size
+          const size = 16 + Math.random() * 30;
+          heart.style.fontSize = size + "px";
+
+          // random animation delay
+          heart.style.animationDelay = Math.random() * 1 + "s";
+
+          document.body.appendChild(heart);
+
+          setTimeout(() => heart.remove(), 4000);
+        }
+      }
+    //   // Play a song on page load
+    //   window.addEventListener("load", () => {
+    //     playSong(); // this will try autoplay
+    //   });
+    </script>
+  </body>
+</html>
